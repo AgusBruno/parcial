@@ -1,26 +1,26 @@
 import "./App.css";
 import { useState } from "react";
 import Form from "./assets/components/pages/formulario/Form";
-import Pedido from "./assets/components/pages/pedido/Pedido";
+import Card from "./assets/components/pages/card/Card";
+
 
 function App() {
-  const [elPedido, setElPedido] = useState();
+  const [datosNombre, setDatosNombre] = useState();
+  const [datosMarca, setDatosMarca] = useState();
 
-  function handleSubmit(pedido) {
-    setElPedido(pedido);
+  function handleSubmit(nombre, marca) {
+    setDatosNombre(nombre);
+    setDatosMarca(marca)
   }
 
-  function handleDelete() {
-    console.log("borrando")
-    setElPedido();
-  }
+
 
   return (
     <>
-      <Form onPedido={handleSubmit} />
+      <Form onDatos={handleSubmit(datosNombre, datosMarca)} />
+      <Card datos={datosNombre} marca={datosMarca} />
 
-      {elPedido ? <Pedido onDelete={handleDelete}> {elPedido}</Pedido>
-       : undefined}
+     
     </>
   );
 }
