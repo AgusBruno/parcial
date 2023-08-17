@@ -9,13 +9,13 @@ const Form = (props) => {
 
   function validacion(event) {
     event.preventDefault();
-    if (nombre.trim() !== "" && nombre.length<3) {
+    if (nombre.trim() !== "" && nombre.length>3) {
       props.onDatos(nombre);
       setMensaje("");
     } else {
       setMensaje("Debe ingresar un nombre mayor a 3 caracteres");
     }
-    if (marca.trim() !== "" && marca.length<6) {
+    if (marca.trim() !== "" && marca.length>6) {
       props.onDatos(marca);
       setMensaje("");
     } else {
