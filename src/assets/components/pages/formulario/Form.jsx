@@ -3,35 +3,54 @@ import { useState } from "react";
 import "./Form.css"
 
 const Form = (props) => {
-  const [pedido, setPedido] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [marca, setMarca] = useState("");
   const [mensaje, setMensaje] = useState("");
 
   function validacion(event) {
     event.preventDefault();
-    if (pedido.trim() !== "") {
-      props.onPedido(pedido);
+    if (nombre.trim() !== "" && nombre.length<3) {
+      props.onDatos(nombre);
       setMensaje("");
     } else {
-      setMensaje("Debe ingresar un pedido");
+      setMensaje("Debe ingresar un nombre mayor a 3 caracteres");
     }
+    if (marca.trim() !== "" && marca.length<6) {
+      props.onDatos(marca);
+      setMensaje("");
+    } else {
+      setMensaje("Debe ingresar una marca mayor a 6 caracteres");
+    }
+
   }
+
   return (
     <div>
-      <Typography color="primary" variant="h4">Bienvenidos a pedidos ya</Typography>
+      <Typography color="primary" variant="h4">Bienvenidos tu nombre y marca preferida</Typography>
     <form
     className="form-container" 
     onSubmit={validacion}>
-      <label htmlFor="pedido"></label>
+      <label htmlFor="onDatos"></label>
       <TextField
         type="text"
-        id="pedido"
-        label="Ingresa tu pedido"
+        id="nombre"
+        label="Ingresa tu nombre"
         variant="outlined"
-        value={pedido}
-        onChange={(e) => setPedido(e.target.value)}
+        value={nombre}
+        onChange={(e) => setNombre(e.target.value)}
       />
+      <TextField
+        type="text"
+        id="marca"
+        label="Ingresa tu marca"
+        variant="outlined"
+        value={marca}
+        onChange={(e) => setMarca(e.target.value)}
+      />
+      
       {mensaje ? <p>{mensaje}</p> : null}
-      <button type="submit">Enviar Pedido</button>
+
+      <button type="submit">Enviar Datos</button>
     </form>
     </div>
   );
